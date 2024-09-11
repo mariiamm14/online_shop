@@ -1,17 +1,26 @@
 <?php include 'inc/header.php';
-include 'handlers/handleADD.php';
 ?>
-
+<?php  require_once 'app.php';
+?>
 
 
 <div class="container my-5">
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
 
+        <?php
+        if ($session->hassession($session ->get('errors'))) {
+            foreach ($session ->get('errors') as $error) {?>
+            <div class="alert alert-danger"><?= $error?></div>
+            <?php }
+            $session ->unset('errors');
 
-            <form action="./handlers/handleADD" method="post"  enctype="multipart/form-data">
+        }
+        
+        ?>
+            <form action="./handlers/handleADD.php" method="post"  enctype="multipart/form-data">
                 <div class="mb-3">
-                <label for="name" class="form-label">Name:</label>
+                <label for="NAME" class="form-label">Name:</label>
                 <input type="text" class="form-control" id="name" name = "name">
                 </div>
 
