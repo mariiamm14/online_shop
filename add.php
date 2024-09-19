@@ -2,7 +2,12 @@
 ?>
 <?php  require_once 'app.php';
 ?>
+<?php
+    if (!$session->hassession($session->get("adminId"))) {
+        $request->redirect('index.php');
+    }
 
+?>
 
 <div class="container my-5">
     <div class="row">
@@ -18,7 +23,7 @@
         }
         
         ?>
-            <form action="./handlers/handleADD.php" method="post"  enctype="multipart/form-data">
+            <form action="handlers/handleADD.php" method="post"  enctype="multipart/form-data">
                 <div class="mb-3">
                 <label for="NAME" class="form-label">Name:</label>
                 <input type="text" class="form-control" id="name" name = "name">

@@ -14,7 +14,7 @@ class img{
     public function upload (){
         move_uploaded_file($this->tmp_name,"../images/$this->new_name");
     }
-    public function delete_img ($imgname){
+    public static function delete_img ($imgname){
         unlink("../images/$imgname");
     }
 }

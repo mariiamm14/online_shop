@@ -10,7 +10,23 @@ $products =$product -> getall();
 <div class="container my-5">
 
     <div class="row">
+    <?php
+        if ($session->hassession($session ->get('success'))) {
+            foreach ($session ->get('success') as $succ) {?>
+            <div class="alert alert-success"><?= $succ?></div>
+            <?php }
+            $session ->unset('success');
+
+        }
         
+        ?>
+        <?php
+        if (!empty ($products  )) {
+
+            
+        
+        
+        ?>
 
 
 
@@ -26,16 +42,23 @@ $products =$product -> getall();
             <p class="text-muted"><?= $product['price'] ?></p>
             <p class="card-text"><?= str::limit($product['desc'])?></p>
             <a href="show.php?ID=<?= $product['ID'] ?>" class="btn btn-primary">Show</a>
-
+            <?php
+                    if ($session->hassession($session->get("adminId"))) {
+                    ?>
             <a href="edit.php?<?= $product['ID'] ?>" class="btn btn-info">Edit</a>
-            <a href="" class="btn btn-danger">Delete</a>
-
+            <a href="handlers/handleDelete.php?ID=<?= $product['ID'] ?>" class="btn btn-danger">Delete</a>
+            <?php }?>
             </div>
         </div>
         
     </div>
     <?php 
-    }?>
+    
+    }} 
+    else{?>
+        <div class="alert alert-warning ">no products</div>
+    <?php }
+    ?>
     </div>
 
 </div>

@@ -1,10 +1,16 @@
 <?
 require_once '../app.php';
 $id =$request->get('ID');
-if($request->hasreq($request->post('submit'))){
+$prod =$product->getone('ID');
+$result= $product->delete('ID');
+if($result){
+    Img::delete_img($prod['img']);
+    $session ->set("success",['PRODUCT UPDATED SUCCESSFULLY']);
+    $request->redirect("../index.php");
 
 }
 else{
-    $request->redirect("../edit.php?ID=$id");
+    $session ->set("errors",['PRODUCT errors']);
+    $request->redirect("../index.php");
 }
 ?>

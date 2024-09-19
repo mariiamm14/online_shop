@@ -1,3 +1,6 @@
+<?php
+require_once 'app.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,17 +21,43 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
+
+    <?php
+    if ($session->hassession($session->get("adminId"))) {?>
+        
+    
+    
+    
+                <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.php">All Products</a>
             </li>
                 
                 <li class="nav-item">
                 <a class="nav-link" href="Add.php">Add Product</a>
                 </li>
-
-        
+                
+        <?php }
+        ?>
     </ul>
 
     </div>
+    <nav class="navbar-nav ml-auto ">
+        <?php
+        if ($session->hassession($session->get("adminId"))) {?>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><?=  $session->get('username')?></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="handelrs/logout.php">logout</a>
+                </li>
+                
+        <?php
+        }
+        
+        ?>
+
+
+
+    </nav>
 </div>
 </nav>

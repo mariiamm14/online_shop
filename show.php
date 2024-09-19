@@ -19,8 +19,12 @@ $product =$product->getone($id) ;
             <p class="text-muted"><?= $product[0]['price'] ?></p>
             <p><?=$product[0]['desc']?></p>
             <a href="index.php" class="btn btn-primary">Back</a>
+            <?php
+                    if ($session->hassession($session->get("adminId"))) {
+                    ?>
             <a href="edit.php?<?= $product[0]['ID'] ?>" class="btn btn-info">Edit</a>
-            <a href="" class="btn btn-danger">Delete</a>
+            <a href="handlers/delete.php?<?= $product[0]['ID'] ?>" class="btn btn-danger">Delete</a>
+            <?php }?>
         </div>
         
     </div>
